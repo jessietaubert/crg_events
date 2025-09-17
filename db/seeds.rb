@@ -17,8 +17,3 @@ CrgEvent.create!(
   name: "Mile High Challenge",
   description: "Climb a mile in May!"
 )
-
-CrgEvent.create!(
-  name: "fake challenge",
-  description: "this is not real!"
-)
