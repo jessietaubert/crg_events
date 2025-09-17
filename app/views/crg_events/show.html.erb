@@ -1,0 +1,82 @@
+<div class="event-show-full">
+  <div class="event-header">
+    <h1 class="event-title"><%= @crg_event.name %></h1>
+    <p class="event-description"><%= @crg_event.description %></p>
+
+    <div class="event-actions">
+      <% if current_user.crg_events.include?(@crg_event) %>
+        <span class="joined-status">✅ You joined this event</span>
+      <% else %>
+        <%= button_to "Join Event", join_crg_event_path(@crg_event), method: :post, class: "join-btn" %>
+      <% end %>
+
+      <%= button_to "Join Team", "#", class: "join-team-btn" %>
+    </div>
+
+    <div class="event-log-row">
+        <button id="open-log-climb" class="log-climb-btn">Log Climb</button>
+    </div>
+
+    <!-- Modal -->
+    <div id="log-climb-modal" class="modal hidden">
+    <div class="modal-content">
+        <span id="close-modal" class="close">&times;</span>
+        <h2>Log a Climb</h2>
+
+        <%= form_with(model: Climb.new, url: crg_event_climbs_path(@crg_event), local: true) do |f| %>
+        <div class="field">
+            <%= f.label :station, "Station Number" %>
+            <%= f.number_field :station, min: 0, max: 68, required: true %>
+        </div>
+
+        <div class="field">
+            <%= f.label :color, "Color" %>
+            <%= f.text_field :color, placeholder: "e.g., Red", required: true %>
+        </div>
+
+        <div class="field">
+            <%= f.label :grade, "Grade" %>
+            <%= f.select :grade, options_for_select((4..14).map { |n| "5.#{n}" }), {}, required: true %>
+        </div>
+
+        <div class="field">
+            <%= f.label :modifier, "Modifier" %>
+            <%= f.select :modifier, options_for_select(["", "+", "-"]) %>
+        </div>
+
+        <%= f.submit "Log Climb", class: "submit-btn" %>
+        <% end %>
+    </div>
+    </div>
+
+  </div>
+
+  <div class="event-dashboard">
+    <div class="ascents-container">
+      <div class="ascents-header">
+        <h2 class="ascents-title">Ascents</h2>
+        <span class="ascents-count"><%= @crg_event.climbs.where(user: current_user).count %></span>
+      </div>
+      
+    <% user_climbs = @crg_event.climbs.where(user: current_user).order(created_at: :desc) %>
+
+    <% if user_climbs.any? %> 
+        <ul class="ascents-list">
+          <% user_climbs.each do |climb| %>
+            <li class="ascent-item">
+              <span class="ascent-station">Station <%= climb.station %></span>
+              <span class="ascent-color"><%= climb.color %></span>
+              <span class="ascent-grade"><%= climb.grade %><%= climb.modifier %></span>
+              <span class="ascent-user">by <%= climb.user.full_name %></span>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="no-ascents">No climbs logged yet.</p>
+      <% end %>
+    </div>
+  </div>
+
+
+
+</div>

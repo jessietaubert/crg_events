@@ -1,0 +1,21 @@
+<div class="admin-dashboard">
+  <h2>Event Dashboard</h2>
+  <h3><%= @crg_event.name %></h3>
+
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Total Ascents</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user_stats.each do |user| %>
+      <tr>
+        <td><%= user.full_name %></td>
+        <td><%= user.total_ascents %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

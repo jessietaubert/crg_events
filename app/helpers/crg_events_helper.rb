@@ -1,0 +1,2 @@
+module CrgEventsHelper
+end

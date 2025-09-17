@@ -1,0 +1,38 @@
+<!-- 
+<h1>Events</h1>
+
+<% @crg_events.each do |event| %>
+  <div>
+    <h2><%= event.name %></h2>
+    <p><%= event.description %></p>
+    <% if current_user.crg_events.include?(event) %>
+      <p>✅ Joined</p>
+    <% else %>
+      <%= button_to "Join", join_crg_event_path(event), method: :post %>
+    <% end %>
+  </div>
+<% end %>
+-->
+
+
+<h1 class="page-title">Events</h1>
+<%= button_to "Logout", destroy_user_session_path, method: :delete, class: "logout-btn" %>
+
+<div class="events-container">
+  <% @crg_events.each do |event| %>
+    <div class="event-card">
+      <%= link_to crg_event_path(event), class: "stretched-link" do %>
+        <span></span>
+      <% end %>
+
+      <h2 class="event-title"><%= event.name %></h2>
+      <p class="event-description"><%= event.description %></p>
+
+      <% if current_user.crg_events.include?(event) %>
+        <p class="joined-status">✅ Joined</p>
+      <% else %>
+        <%= button_to "Join", join_crg_event_path(event), method: :post, class: "join-btn" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
