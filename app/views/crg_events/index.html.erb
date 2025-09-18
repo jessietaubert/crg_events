@@ -29,7 +29,7 @@
       <p class="event-description"><%= event.description %></p>
 
       <% if current_user.crg_events.include?(event) %>
-        <p class="joined-status">✅ Joined</p>
+        <p class="joined-status">Joined</p>
       <% else %>
         <%= button_to "Join", join_crg_event_path(event), method: :post, class: "join-btn" %>
       <% end %>
