@@ -1,11 +1,16 @@
 <div class="event-show-full">
+  <%= link_to "← Back to Events",
+              crg_events_path,
+              class: "back-btn" %>
+
+<div class="event-show-full">
   <div class="event-header">
     <h1 class="event-title"><%= @crg_event.name %></h1>
     <p class="event-description"><%= @crg_event.description %></p>
 
     <div class="event-actions">
       <% if current_user.crg_events.include?(@crg_event) %>
-        <span class="joined-status">✅ You joined this event</span>
+        <span class="joined-status">You joined this event</span>
       <% else %>
         <%= button_to "Join Event", join_crg_event_path(@crg_event), method: :post, class: "join-btn" %>
       <% end %>

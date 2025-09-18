@@ -342,30 +342,32 @@
   border-radius: 6px;
 }
 
-/* Positioning */
-.logout-btn {
+.logout-btn,
+.back-btn {
   position: absolute;
   top: 20px;
   left: 20px;
   padding: 8px 16px;
-  
-  /* Theme styling */
-  background-color: #2c3e50; /* dark slate/primary */
+
+  background-color: #6c839b;
   color: #fff;
   border: none;
   border-radius: 6px;
   font-size: 14px;
   font-weight: 500;
+  text-decoration: none;
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-/* Hover & Active effects */
-.logout-btn:hover {
+/* Hover & Active */
+.logout-btn:hover,
+.back-btn:hover {
   background-color: #34495e;
 }
 
-.logout-btn:active {
+.logout-btn:active,
+.back-btn:active {
   transform: scale(0.96);
 }
 
