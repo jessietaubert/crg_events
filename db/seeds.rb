@@ -13,7 +13,7 @@ CrgEvent.create!(
   description: "Climb all night!"
 )
 
-CrgEvent.create!(
-  name: "Mile High Challenge",
-  description: "Climb a mile in May!"
-)
+# CrgEvent.create!(
+#   name: "Mile High Challenge",
+#   description: "Climb a mile in May!"
+# )
