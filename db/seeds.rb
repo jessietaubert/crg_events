@@ -7,10 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-CrgEvent.delete_all
-Climb.delete_all
-User.find_each(&:destroy)
-
 CrgEvent.create!(
   name: "Climbathon",
   description: "Climb all night!"
